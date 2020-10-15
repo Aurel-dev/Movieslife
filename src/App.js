@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header, MovieList, MovieDetails, Loading, SearchBar } from './components';
-import apiMovie from './conf/api.movie';
+import apiMovie, { apiMovieMap } from './conf/api.movie';
 
 class App extends Component {
 
@@ -24,18 +24,13 @@ class App extends Component {
     apiMovie.get('/discover/movie')
          .then( response => response.data.results)
          .then( moviesApi => {
-           const movies = moviesApi.map( m => ({
-             img: 'https://image.tmdb.org/t/p/w500' + m.poster_path,
-             title: m.title,
-             details: `${ m.release_date } | ${ m.vote_average }/10 (${ m.vote_count })`,
-             description: m.overview
-           }))
+            const movies = moviesApi.map(apiMovieMap)
             this.updateMovies(movies);
          })
          .catch( err => console.log(err));
   }
 
-  updateMovies(movies) {
+  updateMovies = (movies) => {
     this.setState({
       movies,
       loaded: true
