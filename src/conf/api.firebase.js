@@ -1,7 +1,13 @@
 import * as axios from 'axios';
 
-const apiFirebase = axios.create({
+export const apiFirebase = axios.create({
     baseURL: 'https://movislife-1b5d5.firebaseio.com/'
 })
 
-export default apiFirebase;
+
+export default {
+    fetchFavoris: () => apiFirebase.get('favoris.json').then(
+         response => response.data ? response.data : []
+    ),
+    saveFavoris: favoris => apiFirebase.put('favoris.json', favoris)
+}

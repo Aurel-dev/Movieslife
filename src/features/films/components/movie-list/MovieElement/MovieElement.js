@@ -18,9 +18,9 @@ export default class MovieElement extends Component {
                     <span className="flex-fill">{ this.props.movie.details }</span>
                     <div className="d-flex flex-row justify-content-end">
                         { this.props.isFavori ? (
-                            <button onClick={ () => {this.props.removeFavori(this.props.movie.title) }} className="btn btn-small btn-danger">Remove</button>
+                            <button onClick={ () => {this.props.removeFavori(this.props.movie.title) }} className="btn btn-small btn-danger">Retirer</button>
                         ) : (
-                            <button onClick={ () => {this.props.addFavori(this.props.movie.title) }} className="btn btn-small btn-info">Add</button>
+                            <button onClick={ () => {this.props.addFavori(this.props.movie) }} className="btn btn-small btn-info">Ajouter</button>
                         )}
                     </div>
                 </div>
